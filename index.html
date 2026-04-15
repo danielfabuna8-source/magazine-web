@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modern Magazine</title>
+
+<style>
+/* Styling for Search Bar */
+.search-container {
+  margin-top: 20px;
+  text-align: center; /* Center the search bar */
+}
+
+#searchInput {
+  width: 60%;
+  padding: 12px;
+  border-radius: 25px; /* Rounded corners for a clean, modern look */
+  border: 2px solid #ff4d4d; /* Red border */
+  font-size: 16px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: 0.3s ease;
+}
+
+#searchInput:focus {
+  outline: none; /* Remove default focus outline */
+  border-color: #ff944d; /* Light orange border on focus */
+}
+
+#searchInput::placeholder {
+  color: #888; /* Placeholder color */
+}
+/* Center the welcome message ONLY on the Home section with a bold, magazine-inspired design */
+#home .welcome-message {
+  text-align: center;
+  font-size: 36px; /* Larger text size for emphasis */
+  font-weight: bold;
+  margin-top: 50px;
+  color: #fff; /* White text to stand out */
+  text-transform: uppercase; /* Make it more bold and impactful */
+  letter-spacing: 3px; /* Add spacing between letters for a magazine-like feel */
+  
+  /* Background with gradient for a more dynamic look */
+  background: linear-gradient(45deg, #ff416c, #ff4b2b); /* Gradient background */
+  padding: 20px 40px; /* More padding to give it more space */
+  
+  /* Adding a border to make it stand out like a magazine headline */
+  border: 5px solid #fff;
+  border-radius: 15px; /* Rounded corners for smoothness */
+  
+  /* Subtle shadow to make it pop out from the page */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  
+  /* Responsive max-width */
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  
+  font-family: 'Impact', sans-serif; /* A bold, impactful font */
+}
+
+/* Optional: Add animation for a more dynamic effect */
+@keyframes popIn {
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+#home .welcome-message {
+  animation: popIn 1s ease-out;
+}
+/* 🔥 FIRE ANIMATION */
+@keyframes fire {
+  0% { text-shadow: 0 0 5px #ff0, 0 0 10px orange, 0 0 15px red; }
+  50% { text-shadow: 0 0 10px #ff0, 0 0 20px orange, 0 0 25px red; }
+  100% { text-shadow: 0 0 5px #ff0, 0 0 10px orange, 0 0 15px red; }
+}
+
+/* 🥇 TOP 1 GOLD FIRE */
+.top1 {
+  color: gold;
+  font-size: 22px;
+  animation: fire 1s infinite;
+}
+
+/* 🥈 TOP 2 SILVER GLOW */
+.top2 {
+  color: silver;
+  text-shadow: 0 0 10px silver;
+}
+
+/* 🥉 TOP 3 BRONZE GLOW */
+.top3 {
+  color: #cd7f32;
+  text-shadow: 0 0 10px #cd7f32;
+}
+
+/* 🔥 TOP 4 & 5 SIMPLE FIRE */
+.top4, .top5 {
+  color: #ff4d4d;
+  animation: fire 1.5s infinite;
+}
+
+/* 💎 CARD BORDER EFFECT PER RANK */
+.rank-card.top1-card {
+  border-left: 5px solid gold;
+  box-shadow: 0 0 15px gold;
+}
+
+.rank-card.top2-card {
+  border-left: 5px solid silver;
+}
+
+.rank-card.top3-card {
+  border-left: 5px solid #cd7f32;
+}
+
+.rank-card.top4-card {
+  border-left: 5px solid red;
+}
+
+.rank-card.top5-card {
+  border-left: 5px solid orange;
+}
+/* SEARCH */
+#searchInput {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  margin-bottom: 20px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+/* GRID */
+.most-read-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* CARD */
+.rank-card {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(10px);
+  padding: 12px;
+  border-radius: 15px;
+  position: relative;
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.rank-card img {
+  width: 90px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* HOVER */
+.rank-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* RANK */
+.rank {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.top1 { color: gold; text-shadow: 0 0 10px gold; }
+.top2 { color: silver; }
+.top3 { color: #cd7f32; }
+
+/* INFO */
+.info h3 {
+  margin-bottom: 5px;
+}
+
+.views {
+  display: block;
+  font-size: 12px;
+  color: gray;
+}
+
+.trend {
+  font-size: 11px;
+  background: red;
+  color: white;
+  padding: 3px 8px;
+  border-radius: 20px;
+  margin-left: 5px;
+}
+
+/* STATS */
+.stats-box {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.stat {
+  flex: 1;
+  background: linear-gradient(135deg, #ff4d4d, #ff944d);
+  color: white;
+  padding: 15px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background: #f4f4f4;
+  color: #222;
+}
+
+/* HEADER */
+header {
+  background: #111;
+  color: white;
+  padding: 20px 0;
+}
+
+.container {
+  width: 100%;
+  padding: 0 10px;
+}
+
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+nav a {
+  color: white;
+  margin-left: 20px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* HERO (UNCHANGED MO) */
+.hero {
+  height: 40vh;
+  background: url('https://images.unsplash.com/photo-1724961223462-879f7b5006c4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fG1hZ2F6aW5lJTIwYmFja2dyb3VuZHxlbnwwfHwwfHx8MA%3D%3D') no-repeat center/cover;
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.hero-content {
+  background: rgba(0,0,0,0.6);
+  padding: 30px;
+  max-width: 400px;
+}
+
+.hero h1 {
+  font-size: 60px;
+}
+
+/* GRID / ARTICLES */
+.articles {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+}
+
+.card {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.card img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 10px;
+}
+
+/* PAGES */
+.page {
+  display: none;
+  padding: 1px;
+}
+
+.active {
+  display: block;
+}
+
+/* FOOTER */
+footer {
+  background: #111;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+/* ===== MODERN MAGAZINE STYLE ===== */
+
+/* GRADIENT BACKGROUND */
+body {
+  background: linear-gradient(to right, #f4f4f4, #eaeaea);
+}
+
+/* SECTION TITLE */
+h2 {
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* LATEST CARDS (HOVER EFFECT) */
+.card {
+  position: relative;
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.card:hover::after {
+  opacity: 1;
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+
+/* TEXT OVER IMAGE (REAL MAGAZINE STYLE) */
+.card-content {
+  position: absolute;
+  bottom: 0;
+  color: white;
+  z-index: 2;
+}
+
+/* BADGE (NEW / TRENDING) */
+.badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: crimson;
+  color: white;
+  padding: 5px 10px;
+  font-size: 12px;
+  border-radius: 20px;
+}
+
+/* MOST READ PREMIUM STYLE */
+.rank-card {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: white;
+  padding: 15px;
+  border-radius: 15px;
+  border-left: 5px solid #ff4d4d;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.rank-card:hover {
+  transform: translateX(5px);
+}
+
+/* RANK NUMBER STYLE */
+.rank {
+  font-size: 20px;
+  font-weight: bold;
+  color: #ff4d4d;
+}
+
+/* TOP COLORS */
+.top1 { color: gold; }
+.top2 { color: silver; }
+.top3 { color: #cd7f32; }
+
+/* SEARCH STYLE */
+#searchInput {
+  background: #fff;
+  border: none;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+</style>
+</head>
+
+<body onload="showPage('home')">
+
+<header>
+  <div class="container">
+    <div class="logo">🇵🇭 PHILIPPINES MAGAZINE</div>
+
+    <nav>
+      <a onclick="showPage('home')">Home</a>
+      <a onclick="showPage('latest')">Latest Articles</a>
+      <a onclick="showPage('profile')">Most Read</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ✅ HOME -->
+<section id="home" class="page active">
+  <section class="hero">
+    <div class="container hero-content">
+      <h1>Breaking News Headline</h1>
+      <p>Discover the latest trends, stories, and insights from around the world.</p>
+      <button class="btn">Read More</button>
+    </div>
+  </section>
+
+  <div class="container">
+    <!-- Welcome Message for Home -->
+<div class="welcome-message">
+  <p>Welcome to Magazine Philippines</p>
+</div>
+
+    <!-- Keep your other sections intact -->
+    <!-- ✅ NEW: MAGAZINE FEATURE SECTION -->
+    <h2 style="margin-top:20px;">📰 Featured Magazines</h2>
+    <!-- Articles here... -->
+  </div>
+<div class="articles">
+
+ <div class="card">
+  <img src="https://scontent.fcgy2-2.fna.fbcdn.net/v/t1.15752-9/669877704_920090804354630_4970275400113014508_n.png?_nc_cat=104&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeHyIM7pZn7Hrj7-dfn7et7zD7lZKG4c1oEPuVkobhzWgTxTpTa7Bth4YmC1rVidr8xLP2yT1_UzZRBVrxBBJnoI&_nc_ohc=1mVJAa3oMLQQ7kNvwHfDLCh&_nc_oc=AdqkyvBWZz_XFHZbvcTkJMc-pyBzKIxeke5gZO5gf536acxPt8nEHR7Ks7nSYD2V5cA&_nc_ad=z-m&_nc_cid=1119&_nc_zt=23&_nc_ht=scontent.fcgy2-2.fna&_nc_ss=7a32e&oh=03_Q7cD5AG14kyN6FO3XfRn7hdXeGdhdE2GfFpCBQi3_7nzO-AjEA&oe=6A01DA59">
+  <div class="card-content">
+    <h3>Tourism Spots</h3>
+    <p>Top destinations across the country.</p>
+  </div>
+</div>
+
+<div class="card">
+  <img src="https://scontent.fcgy2-2.fna.fbcdn.net/v/t1.15752-9/664775083_2469992150127157_2461164102712214484_n.png?_nc_cat=104&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeF8tnBbY1v1w4qUz5fq200POwxmH30vdwE7DGYffS93Ad9vxKkL_xVJ_PA_4FrRdnRqk4Wnmmx67XFAnGVDD1Yj&_nc_ohc=UDyUWUgMdPMQ7kNvwHumHok&_nc_oc=AdoAqAQnJDqxC6CplZVmp3_TkG3DfwVgw6Wr27u74j6VCp4tPaYxT0s1n9eXf9LJNWE&_nc_ad=z-m&_nc_cid=1119&_nc_zt=23&_nc_ht=scontent.fcgy2-2.fna&_nc_ss=7a32e&oh=03_Q7cD5AG4gKwaUOSs6i_0aV6gewbsTknPBjT6ahhVghMUOU27rw&oe=6A01D785">
+  <div class="card-content">
+    <h3>Philippine Culture</h3>
+    <p>Traditions and heritage of the Philippines.</p>
+  </div>
+</div>
+
+<div class="card">
+  <img src="https://scontent.fcgy2-1.fna.fbcdn.net/v/t1.15752-9/662549444_2853615454982672_3899312363373555501_n.png?_nc_cat=102&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeFVNObQU-QOSd_1IBEYV_4knWxP1M1bYMWdbE_UzVtgxcfNcKHt8CEf7XWBCTns4UCPvoezRuU1rByxIbVle0RU&_nc_ohc=7f43mOjedFAQ7kNvwFkiexz&_nc_oc=Ado6HSDINvm3ykUhTRPDyhDSHHIu_FdJEpGEe9tiFlPKNFlhmhv_emZ3AGL5gK00SkQ&_nc_ad=z-m&_nc_cid=1119&_nc_zt=23&_nc_ht=scontent.fcgy2-1.fna&_nc_ss=7a32e&oh=03_Q7cD5AFg54iN2RgY7OmA-yahfKChvEuS-VHBrDtaI19uiTuu7A&oe=6A01C0DD">
+  <div class="card-content">
+    <h3>Filipino Cuisine</h3>
+    <p>Delicious dishes and street food.</p>
+  </div>
+</div>
+
+<div class="card">
+  <img src="https://scontent.fcgy2-4.fna.fbcdn.net/v/t1.15752-9/643384101_951311994277233_6010060753213941676_n.png?_nc_cat=108&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeGnGtfK7Ch4h5_r1pxVmJZbGbR4SK6-gzUZtHhIrr6DNdETjN4ZrCeni7H1k2VDo5IZ3h4bUo1RbfjpeJmmKDqw&_nc_ohc=dC8L8l8AyMkQ7kNvwHfJGox&_nc_oc=Adqsfr2duLFZbUhHf_W90X84H_xZ8CzSgje2op8jo6gWfMiIwmo8pHODLRZ-zDNBOvU&_nc_ad=z-m&_nc_cid=1119&_nc_zt=23&_nc_ht=scontent.fcgy2-4.fna&_nc_ss=7a32e&oh=03_Q7cD5AGL9WOmzZqbfMi9nEcjB3naHJVsPWcRkT9RfmY4coYDZQ&oe=6A01E5EE">
+  <div class="card-content">
+    <h3>Festivals</h3>
+    <p>Colorful fiestas celebrated nationwide.</p>
+  </div>
+</div>
+
+<div class="card">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBMQwtumw1nVZ0E0tL5rjz9vBlAy05ykhBNixiY3ha1g&s=10">
+  <div class="card-content">
+    <h3>Beaches & Islands</h3>
+    <p>Beautiful tropical destinations.</p>
+  </div>
+</div>
+
+<div class="card">
+  <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80">
+  <div class="card-content">
+    <h3>Mountains & Nature</h3>
+    <p>Adventure spots and scenic views.</p>
+  </div>
+</div>
+
+<div class="card">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTc4VhYJy4d4jdTJ3BRe_ChDmkQX-xKk6cusbpEq2auSQ&s=10">
+  <div class="card-content">
+    <h3>Business & Economy</h3>
+    <p>Growth and financial updates.</p>
+  </div>
+</div>
+
+<div class="card">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqqOBSrPOjSHSV2vYDFThDXq1huSG7nL14m4-x6qBVQhBUOt6w_qdNDIWUzg&s">
+  <div class="card-content">
+    <h3>Education</h3>
+    <p>Learning trends in the Philippines.</p>
+  </div>
+</div>
+
+<div class="card">
+  <img src="https://images.unsplash.com/photo-1547347298-4074fc3086f0?auto=format&fit=crop&w=1200&q=80">
+  <div class="card-content">
+    <h3>Sports</h3>
+    <p>Basketball, boxing, and more.</p>
+  </div>
+</div>
+
+<div class="card">
+  <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1200&q=80">
+  <div class="card-content">
+    <h3>Entertainment</h3>
+    <p>Movies, TV shows, and celebrities.</p>
+  </div>
+</div>
+
+</div>
+
+    </div>
+  </div>
+
+</section>
+<!-- ✅ LATEST ARTICLES -->
+<section id="latest" class="page">
+
+  <div class="container">
+    <h2 style="margin:15px 0;">🔥 Latest Articles</h2>
+
+    <!-- SEARCH BAR -->
+    <input 
+      type="text" 
+      id="latestSearch"
+      placeholder="🔍 Search latest articles..."
+      onkeyup="filterLatest()"
+      style="
+        width:100%;
+        padding:12px;
+        border-radius:10px;
+        border:none;
+        box-shadow:0 5px 10px rgba(0,0,0,0.1);
+        margin-bottom:20px;
+      "
+    />
+
+    <div class="articles" id="latestList">
+
+     <div class="card">
+  <span class="badge">NEW</span>
+  <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e">
+  <div class="card-content">
+    <h3>Palawan Paradise</h3>
+    <p>Explore the crystal-clear waters of Palawan.</p>
+  </div>
+</div>
+
+<div class="card">
+  <span class="badge">NEW</span>
+  <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470">
+  <div class="card-content">
+    <h3>Boracay White Beach</h3>
+    <p>Experience the world-famous white sand beach.</p>
+  </div>
+</div>
+
+<div class="card">
+  <span class="badge">NEW</span>
+  <img src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff">
+  <div class="card-content">
+    <h3>Banaue Rice Terraces</h3>
+    <p>Discover the 8th wonder of the world.</p>
+  </div>
+</div>
+
+<div class="card">
+  <span class="badge">NEW</span>
+  <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c">
+  <div class="card-content">
+    <h3>Manila Night Life</h3>
+    <p>Enjoy the vibrant nightlife in Metro Manila.</p>
+  </div>
+</div>
+
+<div class="card">
+  <span class="badge">NEW</span>
+  <img src="https://images.unsplash.com/photo-1506157786151-b8491531f063">
+  <div class="card-content">
+    <h3>Sinulog Festival</h3>
+    <p>Celebrate Cebu’s grandest festival.</p>
+  </div>
+</div>
+
+<div class="card">
+  <span class="badge">NEW</span>
+  <img src="https://images.unsplash.com/photo-1529042410759-befb1204b468">
+  <div class="card-content">
+    <h3>Filipino Street Food</h3>
+    <p>Taste the best street foods in the Philippines.</p>
+  </div>
+</div>
+
+<div class="card">
+  <span class="badge">NEW</span>
+  <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e">
+  <div class="card-content">
+    <h3>Chocolate Hills Bohol</h3>
+    <p>See the iconic natural wonder in Bohol.</p>
+  </div>
+</div>
+
+<div class="card">
+  <span class="badge">NEW</span>
+  <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
+  <div class="card-content">
+    <h3>Vigan Heritage City</h3>
+    <p>Walk through Spanish-era streets.</p>
+  </div>
+</div>
+
+<div class="card">
+  <span class="badge">NEW</span>
+  <img src="https://images.unsplash.com/photo-1502082553048-f009c37129b9">
+  <div class="card-content">
+    <h3>Mayon Volcano</h3>
+    <p>Witness the perfect cone volcano in Albay.</p>
+  </div>
+</div>
+
+<div class="card">
+  <span class="badge">NEW</span>
+  <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb">
+  <div class="card-content">
+    <h3>Siargao Island Life</h3>
+    <p>Surf and relax in the surfing capital.</p>
+  </div>
+</div>
+
+</section>
+
+<!-- ✅ MOST READ (UPGRADED) -->
+<section id="profile" class="page">
+
+  <div class="container">
+    <h2 style="margin:15px 0;">🔥 Most Read Articles</h2>
+
+   
+    <!-- SEARCH -->
+    <input 
+      type="text" 
+      id="searchInput"
+      placeholder="🔍 Search most read..."
+      onkeyup="filterArticles()"
+    />
+
+    <!-- LIST -->
+    <div id="mostReadList" class="most-read-grid">
+
+      <!-- ITEM -->
+      <div class="rank-card top1-card">
+  <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470">
+  <span class="rank top1">🥇</span>
+  <div class="info">
+    <h3>Philippine Islands Guide</h3>
+    <p>🌴 Most viewed travel article</p>
+    <span class="views">👁️ 12,450 views</span>
+    <span class="trend">🔥 Trending</span>
+  </div>
+</div>
+
+<div class="rank-card top2-card">
+  <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c">
+  <span class="rank top2">🥈</span>
+  <div class="info">
+    <h3>Manila City Life</h3>
+    <p>🏙️ Urban lifestyle</p>
+    <span class="views">👁️ 9,210 views</span>
+  </div>
+</div>
+
+<div class="rank-card top3-card">
+  <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e">
+  <span class="rank top3">🥉</span>
+  <div class="info">
+    <h3>Palawan Beaches</h3>
+    <p>🏝️ Top tourist destination</p>
+    <span class="views">👁️ 8,500 views</span>
+  </div>
+</div>
+
+<div class="rank-card top4-card">
+  <img src="https://images.unsplash.com/photo-1529042410759-befb1204b468">
+  <span class="rank top4">4🔥</span>
+  <div class="info">
+    <h3>Filipino Street Food</h3>
+    <p>🍢 Popular foods</p>
+    <span class="views">👁️ 7,900 views</span>
+  </div>
+</div>
+
+<div class="rank-card top5-card">
+  <img src="https://images.unsplash.com/photo-1506157786151-b8491531f063">
+  <span class="rank top5">5🔥</span>
+  <div class="info">
+    <h3>Philippine Festivals</h3>
+    <p>🎉 Culture & traditions</p>
+    <span class="views">👁️ 6,800 views</span>
+  </div>
+</div>
+
+
+</section>
+    </div>
+
+  </div>
+</section>
+
+<style>
+
+</style>
+
+<script>
+function filterArticles() {
+  let input = document.getElementById("searchInput").value.toLowerCase();
+  let cards = document.querySelectorAll(".rank-card");
+
+  cards.forEach(card => {
+    let text = card.innerText.toLowerCase();
+    if (text.includes(input)) {
+      card.style.display = "block";
+    } else {
+      card.style.display = "none";
+    }
+  });
+}
+</script>
+  </div>
+
+</section>
+      </div>
+
+      <!-- BIO -->
+      <div style="margin-top:15px;">
+        <h4>About Me</h4>
+        <p style="color:gray;">
+          Passionate web developer creating modern magazine websites and UI designs.
+        </p>
+      </div>
+
+    </div>
+
+</section>
+  </div>
+
+</section>
+
+<footer>
+  <p>© 2026 Modern Magazine</p>
+</footer>
+
+<script>
+function showPage(page) {
+  let pages = document.querySelectorAll(".page");
+
+  pages.forEach(p => p.classList.remove("active"));
+
+  document.getElementById(page).classList.add("active");
+}
+</script>
+
+</script>
+
+</body>
+</html>
